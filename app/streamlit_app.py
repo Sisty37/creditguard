@@ -183,11 +183,11 @@ if predict_btn:
     with col_g1:
         st.markdown("**Risk Level:**")
         if prob_default < 0.3:
-            st.progress(prob_default, text=f"Low Risk ({prob_default*100:.1f}%)")
+           st.progress(float(prob_default), text=f"Low Risk ({prob_default*100:.1f}%)")
         elif prob_default < 0.6:
-            st.progress(prob_default, text=f"Medium Risk ({prob_default*100:.1f}%)")
+           st.progress(float(prob_default), text=f"Medium Risk ({prob_default*100:.1f}%)")
         else:
-            st.progress(prob_default, text=f"High Risk ({prob_default*100:.1f}%)")
+           st.progress(float(prob_default), text=f"High Risk ({prob_default*100:.1f}%)")
     with col_g2:
         st.markdown("**Risk Category:**")
         if prob_default < 0.2:

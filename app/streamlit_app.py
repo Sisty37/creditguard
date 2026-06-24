@@ -16,11 +16,17 @@ st.set_page_config(
 )
 
 # ─── Load Model & Assets ───────────────────────────────────
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 @st.cache_resource
 def load_model():
-    with open('../models/best_credit_model.pkl', 'rb') as f:
+    model_path        = os.path.join(BASE_DIR, 'models', 'best_credit_model.pkl')
+    feature_names_path = os.path.join(BASE_DIR, 'models', 'feature_names.json')
+    
+    with open(model_path, 'rb') as f:
         model = pickle.load(f)
-    with open('../models/feature_names.json', 'r') as f:
+    with open(feature_names_path, 'r') as f:
         feature_names = json.load(f)
     return model, feature_names
 

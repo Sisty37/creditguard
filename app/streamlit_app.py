@@ -55,21 +55,20 @@ st.sidebar.markdown("**Conference:** COMPAS 2026, IEEE")
 # ─── Input Form ────────────────────────────────────────────
 st.subheader("📝 Enter Borrower Information")
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("**Personal Information**")
     age = st.slider("Age", min_value=18, max_value=100, value=40)
     number_of_dependents = st.number_input("Number of Dependents", min_value=0, max_value=20, value=0)
 
-with col2:
     st.markdown("**Financial Information**")
     monthly_income = st.number_input("Monthly Income ($)", min_value=0, max_value=100000, value=5000)
     debt_ratio = st.slider("Debt Ratio", min_value=0.0, max_value=1.0, value=0.3, step=0.01)
     revolving_utilization = st.slider("Revolving Utilization of Unsecured Lines",
                                        min_value=0.0, max_value=1.0, value=0.3, step=0.01)
 
-with col3:
+with col2:
     st.markdown("**Credit History**")
     num_open_credit = st.number_input("Number of Open Credit Lines & Loans",
                                        min_value=0, max_value=50, value=5)

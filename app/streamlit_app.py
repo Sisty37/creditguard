@@ -32,14 +32,22 @@ def load_model():
 
 model, feature_names = load_model()
 
-# ─── Custom CSS (narrower input boxes) ─────────────────────
+# ─── Custom CSS (narrower input boxes & button) ────────────
 st.markdown("""
 <style>
     div[data-testid="stNumberInput"] {
-        max-width: 220px;
+        max-width: 140px;
     }
     div[data-testid="stNumberInput"] input {
         text-align: left;
+    }
+    div[data-testid="stButton"] {
+        display: flex;
+        justify-content: center;
+    }
+    div[data-testid="stButton"] button {
+        max-width: 320px;
+        width: 100%;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -159,7 +167,7 @@ def engineer_features(age, monthly_income, debt_ratio, revolving_utilization,
     return features
 
 # ─── Predict Button ────────────────────────────────────────
-predict_btn = st.button("🔍 Predict Credit Risk", type="primary", use_container_width=True)
+predict_btn = st.button("🔍 Predict Credit Risk", type="primary", use_container_width=False)
 
 if predict_btn:
     features = engineer_features(

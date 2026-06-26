@@ -32,6 +32,18 @@ def load_model():
 
 model, feature_names = load_model()
 
+# ─── Custom CSS (narrower input boxes) ─────────────────────
+st.markdown("""
+<style>
+    div[data-testid="stNumberInput"] {
+        max-width: 220px;
+    }
+    div[data-testid="stNumberInput"] input {
+        text-align: left;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # ─── Title ─────────────────────────────────────────────────
 
 st.title("🛡️ CreditGuard — Credit Risk Assessment System")

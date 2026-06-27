@@ -56,7 +56,7 @@ st.markdown("""
 
 st.title("🛡️ CreditGuard — Credit Risk Assessment System")
 st.markdown("**Real-time credit default prediction using XGBoost + Optuna**")
-st.markdown("*COMPAS 2026 — IEEE Conference | University of Dhaka*")
+#st.markdown("*COMPAS 2026 — IEEE Conference | University of Dhaka*")
 st.divider()
 
 # ─── Sidebar ───────────────────────────────────────────────

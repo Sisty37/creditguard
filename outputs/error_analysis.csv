@@ -1,0 +1,7 @@
+Feature,False Negative (Missed Default) Mean,Correctly Identified Default Mean,False Positive (Wrongly Flagged) Mean
+RevolvingUtilizationOfUnsecuredLines,0.628,0.942,0.913
+TotalTimesPastDue,1.406,7.003,6.062
+WeightedLatePay,2.345,14.116,12.046
+age,46.096,43.77,43.498
+DebtRatio,287.978,284.947,235.923
+NumberOfOpenCreditLinesAndLoans,8.352,6.397,6.627

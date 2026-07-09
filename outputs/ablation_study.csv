@@ -1,0 +1,6 @@
+Experiment,AUC,AUC Improvement (%)
+Raw Features (no cleaning),0.8507,0.0
++ Data Cleaning,0.8553,0.54
++ Feature Engineering (14 features),0.8503,-0.05
++ GridSearchCV Tuning,0.8728,2.6
++ Optuna Optimization (Final Model),0.8734,2.67

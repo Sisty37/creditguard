@@ -1,0 +1,5 @@
+Model,Baseline AUC,GridSearch AUC,Optuna AUC,Optuna Improvement (%)
+XGBoost,0.8503,0.8728,0.8734,2.72
+Gradient Boosting,0.8709,0.8719,0.8731,0.25
+Random Forest,0.8427,0.869,0.87,3.24
+Logistic Regression,0.8678,0.8679,0.8679,0.01

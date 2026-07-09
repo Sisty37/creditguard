@@ -1,0 +1,8 @@
+Reference,Model,AUC,Year,Dataset
+This Study (XGBoost + Optuna),XGBoost,0.8734,2026,Give Me Some Credit
+Alonso & Carbo (2021),XGBoost + RF,0.87,2021,Give Me Some Credit
+Lessmann et al. (2015),GBM + Ensemble,0.868,2015,Multiple Datasets
+Monotonic NAM (2022),Neural Additive,0.86,2022,Give Me Some Credit
+Bahnsen et al. (2015),LR (cost-sensitive),0.856,2015,Give Me Some Credit
+Interpretable Selective Learning (2022),LR Variant,0.855,2022,Give Me Some Credit
+Baesens et al. (2003),SVM + NN,0.84,2003,Multiple Datasets

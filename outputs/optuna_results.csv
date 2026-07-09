@@ -1,0 +1,5 @@
+Model,AUC,Accuracy,Precision,Recall,F1-Score,Best CV AUC
+XGBoost,0.8734,0.8023,0.9309,0.8023,0.8477,0.8642
+Gradient Boosting,0.8731,0.9377,0.9223,0.9377,0.9225,0.8644
+Random Forest,0.87,0.8269,0.9295,0.8269,0.8641,0.8608
+Logistic Regression,0.8679,0.7861,0.9299,0.7861,0.8365,0.8587

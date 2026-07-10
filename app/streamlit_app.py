@@ -19,18 +19,36 @@ st.set_page_config(
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Positive-class prevalence in the training data (Give Me Some Credit).
+# Used both as the operating decision threshold and to anchor the risk bands,
+# so that "risk" is expressed relative to the base rate rather than an
+# arbitrary 0.5 cutoff.
+PREVALENCE = 0.0668
+
+# Decision threshold applied to the CALIBRATED default probability.
+# Setting it at the prevalence reproduces the ~0.79 default-recall operating
+# point reported in the paper. Raise it to trade recall for precision.
+DECISION_THRESHOLD = PREVALENCE
+
 @st.cache_resource
 def load_model():
-    model_path         = os.path.join(BASE_DIR, 'models', 'best_credit_model.pkl')
+    # Prefer the isotonic-calibrated model so the probabilities the app shows
+    # are reliable (Brier ~0.048). Fall back to the raw tuned model only if the
+    # calibrated artifact is missing.
+    calibrated_path    = os.path.join(BASE_DIR, 'models', 'calibrated_credit_model.pkl')
+    raw_path           = os.path.join(BASE_DIR, 'models', 'best_credit_model.pkl')
     feature_names_path = os.path.join(BASE_DIR, 'models', 'feature_names.json')
+
+    model_path = calibrated_path if os.path.exists(calibrated_path) else raw_path
+    is_calibrated = os.path.exists(calibrated_path)
 
     with open(model_path, 'rb') as f:
         model = pickle.load(f)
     with open(feature_names_path, 'r') as f:
         feature_names = json.load(f)
-    return model, feature_names
+    return model, feature_names, is_calibrated
 
-model, feature_names = load_model()
+model, feature_names, is_calibrated = load_model()
 
 # ─── Theme tokens (mirrors the CreditGuard light-mode design) ──
 GOLD        = "#A9780F"
@@ -328,7 +346,10 @@ if predict_btn:
 
     prob_default    = float(model.predict_proba(input_df)[0][1])
     prob_no_default = 1 - prob_default
-    prediction      = int(model.predict(input_df)[0])
+    # Decide default using the explicit operating threshold, NOT model.predict()'s
+    # implicit 0.5 cutoff — 0.5 is meaningless on a calibrated score at 6.68%
+    # prevalence and would miss most true defaulters.
+    prediction      = int(prob_default >= DECISION_THRESHOLD)
 
     st.session_state['cg_result'] = {
         'input_df': input_df,
@@ -356,11 +377,21 @@ with col_result:
         prediction     = r['prediction']
         pct = prob_default * 100
 
-        cat = ("Very Low" if prob_default < 0.2 else
-               "Low" if prob_default < 0.4 else
-               "Medium" if prob_default < 0.6 else "High")
+        # Risk bands are expressed relative to the base default rate (prevalence
+        # = 6.68%), not fixed 0.2/0.4/0.6 cutoffs. A probability equal to the
+        # prevalence is "average" risk; multiples of it are elevated.
+        if prob_default < PREVALENCE:
+            cat = "Low"          # below the population base rate
+        elif prob_default < 2 * PREVALENCE:
+            cat = "Medium"       # up to ~2x base rate
+        elif prob_default < 4 * PREVALENCE:
+            cat = "High"         # ~2-4x base rate
+        else:
+            cat = "Very High"    # >4x base rate
 
-        gauge_color = RISK_LOW if pct < 30 else RISK_MID if pct < 60 else RISK_HIGH
+        gauge_color = (RISK_LOW if prob_default < PREVALENCE
+                       else RISK_MID if prob_default < 2 * PREVALENCE
+                       else RISK_HIGH)
         if prediction == 1:
             badge_bg, badge_color, badge_text = RISK_HIGH_BG, RISK_HIGH, "⚠️ HIGH RISK — Likely to Default"
         else:

@@ -2,8 +2,6 @@
 
 Real-time credit default risk assessment using **XGBoost + Optuna hyperparameter tuning**, with **SHAP-based explainability** and an interactive **Streamlit** web app.
 
-> Developed for **COMPAS 2026 — IEEE 3rd International Conference**, University of Dhaka.
-
 ---
 
 ## 📌 Overview
@@ -115,14 +113,13 @@ If you use this work, please cite:
 
 ```
 A. J. Sisty, "CreditGuard: Explainable Credit Default Risk Prediction with
-XGBoost and Optuna," COMPAS 2026 — IEEE 3rd International Conference,
-University of Dhaka, 2026.
+XGBoost and Optuna," 2026.
 ```
 
 ## 👤 Author
 
 **Abu Jafar Sisty**
-COMPAS 2026 — IEEE 3rd International Conference · University of Dhaka
+University of Dhaka
 
 ## 📄 License
 

@@ -2,6 +2,8 @@
 
 Real-time credit default risk assessment using **XGBoost + Optuna hyperparameter tuning**, with **SHAP-based explainability** and an interactive **Streamlit** web app.
 
+🔗 **Live Demo:** [creditguard-2026.streamlit.app](https://creditguard-2026.streamlit.app/)
+
 ---
 
 ## 📌 Overview
@@ -18,7 +20,7 @@ CreditGuard predicts the probability that a borrower will default on a loan with
 
 ## 🖼️ App Preview
 
-Run the app locally (see [Usage](#-usage)) to see the live UI — borrower information on the left, prediction result, SHAP explanation, and JSON response on the right.
+Try the app live at **[creditguard-2026.streamlit.app](https://creditguard-2026.streamlit.app/)**, or run it locally (see [Usage](#-usage)) — borrower information on the left, prediction result, SHAP explanation, and JSON response on the right.
 
 ## 🧠 Model
 
@@ -119,7 +121,7 @@ XGBoost and Optuna," 2026.
 ## 👤 Author
 
 **Abu Jafar Sisty**
-University of Dhaka
+American International University-Bangladesh (AIUB)
 
 ## 📄 License
 
